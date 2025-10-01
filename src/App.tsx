@@ -261,7 +261,7 @@ const App: React.FC = () => {
       {/* Logo in top left corner - absolute positioned - Hidden on mobile */}
       {!isMobile && (
         <img
-          src="src\assets\logoCstam png.png" // Replace with your actual image path
+          src="src/assets/logoCstam png.png" // Replace with your actual image path
           alt="Logo"
           style={{
             position: "absolute",
