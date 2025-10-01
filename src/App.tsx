@@ -164,7 +164,7 @@ const App: React.FC = () => {
   const [secretGuess, setSecretGuess] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const highlightedCells = ["13-7", "13-10", "13-2", "13-12"];
+  const highlightedCells = ["13-8", "13-11", "13-3", "13-13"];
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
