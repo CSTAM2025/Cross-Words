@@ -21,7 +21,7 @@ interface CrosswordGridProps {
   highlightedCells?: string[];
   cellSize?: number;
   isMobile?: boolean;
-  completedWords?: number[]; // ✅ added
+  completedWords?: number[];
 }
 
 const CrosswordGrid: React.FC<CrosswordGridProps> = ({
@@ -71,11 +71,13 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
         display: "grid",
         gridTemplateColumns: `repeat(${grid[0].length}, ${size}px)`,
         gap: `${gap}px`,
-        padding: "10px",
-        borderRadius: "10px",
+        padding: "5px",
+        borderRadius: "8px",
         backgroundColor:
-          theme === "light" ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.4)",
-        boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+          theme === "light" ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.3)",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+        justifyContent: "center",
+        overflowX: "auto",
       }}
     >
       {grid.map((rowArr, i) =>
@@ -93,6 +95,8 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
                 position: "relative",
                 width: `${size}px`,
                 height: `${size}px`,
+                minWidth: `${size}px`,
+                minHeight: `${size}px`,
               }}
             >
               {isActive ? (
@@ -101,11 +105,12 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
                     <span
                       style={{
                         position: "absolute",
-                        top: 2,
+                        top: 1,
                         left: 2,
-                        fontSize: 8,
+                        fontSize: Math.max(size / 4, 8),
                         fontWeight: "bold",
                         color: theme === "light" ? "#000" : "#fff",
+                        userSelect: "none",
                       }}
                     >
                       {number}
@@ -121,23 +126,23 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
                       width: "100%",
                       height: "100%",
                       textAlign: "center",
-                      fontSize: isMobile ? 8 : 16,
+                      fontSize: isMobile ? size * 0.5 : size * 0.45,
                       border: "1px solid",
                       borderColor: theme === "light" ? "#555" : "#aaa",
-                      backgroundColor: completedCell
-                        ? "#4CAF50"
-                        : isHighlighted
+                      backgroundColor: isHighlighted
                         ? theme === "light"
                           ? "#fffa90"
                           : "#ffc10790"
+                        : completedCell
+                        ? "#4CAF50"
                         : theme === "light"
-                        ? "rgba(255,255,255,0.85)"
-                        : "rgba(50,50,50,0.85)",
-                      boxSizing: "border-box",
-                      padding: 0,
-                      borderRadius: "3px",
+                        ? "#fff"
+                        : "#333",
                       color: theme === "light" ? "#000" : "#fff",
-                      transition: "background-color 0.3s ease",
+                      boxSizing: "border-box",
+                      borderRadius: "3px",
+                      padding: 0,
+                      transition: "background-color 0.3s ease, color 0.3s ease",
                     }}
                   />
                 </>
@@ -146,10 +151,9 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
                   style={{
                     width: "100%",
                     height: "100%",
-                    backgroundColor:
-                      theme === "light" ? "rgba(0,0,0,0.7)" : "#adf5ffff",
+                    backgroundColor: theme === "light" ? "#555" : "#000",
                     border: "1px solid",
-                    borderColor: theme === "light" ? "#555" : "#aaa",
+                    borderColor: theme === "light" ? "#555" : "#444",
                     borderRadius: "3px",
                   }}
                 />

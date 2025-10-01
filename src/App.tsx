@@ -255,8 +255,27 @@ const App: React.FC = () => {
         boxSizing: "border-box",
         alignItems: "center",
         transition: "background-color 0.3s ease, color 0.3s ease",
+        position: "relative", // Added for absolute positioning
       }}
     >
+      {/* Logo in top left corner - absolute positioned - Hidden on mobile */}
+      {!isMobile && (
+        <img
+          src="src\assets\logoCstam png.png" // Replace with your actual image path
+          alt="Logo"
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: "20px",
+            width: "100px",
+            height: "100px",
+            zIndex: 10,
+            borderRadius: "8px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+          }}
+        />
+      )}
+
       <div
         style={{
           display: "flex",
